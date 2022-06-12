@@ -27,7 +27,7 @@ class InventoryView(viewsets.ViewSet):
     permission_classes = (IsAuthenticated,)
 
     def list(self, request):
-        queryset = Inventory.objects.all()
+        queryset = Inventory.objects.filter(user=request.user)
         serializer = InventorySerializer(queryset, many=True)
         return Response(serializer.data)
     def create(self, request):
