@@ -59,7 +59,6 @@ class InventorySerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def check_expiry(self, obj):
-        print(obj.expiry)
         if datetime.today().date() > obj.expiry:
             return True
         return False
