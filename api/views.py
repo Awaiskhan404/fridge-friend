@@ -31,6 +31,7 @@ class InventoryView(viewsets.ViewSet):
         serializer = InventorySerializer(queryset, many=True)
         return Response(serializer.data)
     def create(self, request):
+        request.data['user'] = request.user.id
         serializer = InventorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
